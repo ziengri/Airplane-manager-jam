@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Main_menu.gd" id="1_4p87c"]
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_pskvo"]
 [ext_resource type="Script" path="res://Scripts/Options.gd" id="2_6h3bw"]
-[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_aeopl"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_rpsd6"]
 
 [node name="Menu" type="Node"]
 script = ExtResource("1_pskvo")
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_aeopl")
+texture = ExtResource("2_rpsd6")
 
 [node name="Main_menu" type="Control" parent="."]
 layout_mode = 3
@@ -54,7 +54,7 @@ clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 50
-text = "Air-Managair"
+text = "Air-Managair1"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main_menu/MarginContainer/VBoxContainer2"]
