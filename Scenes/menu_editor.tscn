@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://Scenes/Create_lvl.gd" id="3_plv4r"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbpcj"]
-load_path = "res://.godot/imported/Срус.png-f04bf45671b44aecb6e10cb160da49f8.ctex"
 
 [node name="Menu_Editor" type="Control"]
 layout_mode = 3

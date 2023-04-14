@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv7msv1dbmfei"]
+
+[ext_resource type="Script" path="res://Editor/TimeLine/TimePoint.gd" id="1_je7yr"]
+
+[node name="TimePoint" type="Panel"]
+custom_minimum_size = Vector2(10, 15)
+script = ExtResource("1_je7yr")
