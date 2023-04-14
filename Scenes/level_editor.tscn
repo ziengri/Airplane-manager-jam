@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba2yk1rp2583x"]
+
+[ext_resource type="Script" path="res://Scenes/level_editor.gd" id="1_rl0q2"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_kph64"]
+[ext_resource type="Script" path="res://Scenes/WindowPlaneEdit.gd" id="6_gqr8e"]
+
+[node name="LevelEditor" type="Node2D"]
+script = ExtResource("1_rl0q2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1298.0
+offset_bottom = 736.0
+texture = ExtResource("2_kph64")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Window" type="Window" parent="CanvasLayer"]
+position = Vector2i(393, 200)
+size = Vector2i(500, 370)
+visible = false
+min_size = Vector2i(500, 370)
+
+[node name="WindowPlaneEdit" type="Control" parent="CanvasLayer/Window"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_gqr8e")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Window/WindowPlaneEdit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Window/WindowPlaneEdit"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.5
+offset_right = 228.5
+offset_bottom = 312.0
+grow_horizontal = 2
+
+[node name="TimelinePoint" type="Label" parent="CanvasLayer/Window/WindowPlaneEdit/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="CreatePlaneEd" type="Button" parent="CanvasLayer/Window/WindowPlaneEdit/VBoxContainer"]
+layout_mode = 2
+text = "create plane "
+
+[node name="S" type="HBoxContainer" parent="CanvasLayer/Window/WindowPlaneEdit/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Window/WindowPlaneEdit/VBoxContainer/S"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "path"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Window/WindowPlaneEdit/VBoxContainer/S"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "side"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Window/WindowPlaneEdit/VBoxContainer/S"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "type"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/Window/WindowPlaneEdit/VBoxContainer/S"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "time"
+horizontal_alignment = 1
+
+[node name="TimeLine" type="Line2D" parent="CanvasLayer"]
+points = PackedVector2Array(0, 600, 1280, 600)
+
+[connection signal="close_requested" from="CanvasLayer/Window" to="CanvasLayer/Window/WindowPlaneEdit" method="_on_window_close_requested"]
+[connection signal="pressed" from="CanvasLayer/Window/WindowPlaneEdit/VBoxContainer/CreatePlaneEd" to="CanvasLayer/Window/WindowPlaneEdit" method="_on_create_plane_ed_pressed"]

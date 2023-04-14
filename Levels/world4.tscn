@@ -1,0 +1,299 @@
+[gd_scene load_steps=17 format=3 uid="uid://c7xgplu1tswu6"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_1et6c"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_vb58n"]
+[ext_resource type="PackedScene" uid="uid://bp2oj75gudlbp" path="res://Scenes/path.tscn" id="3_w13f3"]
+[ext_resource type="Script" path="res://Scripts/Win.gd" id="4_520sr"]
+[ext_resource type="Script" path="res://Scripts/Losing.gd" id="4_jf436"]
+[ext_resource type="AudioStream" uid="uid://bf0gu5wi01ffo" path="res://Audio/Sound/Airplane-01.wav" id="6_lukba"]
+[ext_resource type="Script" path="res://Scripts/Area2D.gd" id="6_mtcxr"]
+[ext_resource type="Script" path="res://Scripts/BeDelete.gd" id="7_tvr3h"]
+
+[sub_resource type="Animation" id="Animation_yheen"]
+resource_name = "1"
+length = 60.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_wx6iu"]
+resource_name = "4"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"win"
+}]
+}
+
+[sub_resource type="VisualShaderNodeSDFRaymarch" id="VisualShaderNodeSDFRaymarch_gmvcm"]
+
+[sub_resource type="Animation" id="Animation_mj2qu"]
+length = 0.001
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [SubResource("VisualShaderNodeSDFRaymarch_gmvcm"), 0],
+"method": &"create_airplane"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_amiax"]
+resource_name = "asdasd"
+length = 60.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.5, 3.5, 4, 6, 8, 8.5, 15, 16, 21),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0, 1],
+"method": &"create_airplane"
+}, {
+"args": [0, -1],
+"method": &"create_airplane"
+}, {
+"args": [1, -1],
+"method": &"create_airplane"
+}, {
+"args": [0, 1],
+"method": &"create_airplane"
+}, {
+"args": [0, 1],
+"method": &"create_airplane"
+}, {
+"args": [0, -1],
+"method": &"create_airplane"
+}, {
+"args": [1, 1],
+"method": &"create_airplane"
+}, {
+"args": [0, 1],
+"method": &"create_airplane"
+}, {
+"args": [1, -1],
+"method": &"create_airplane"
+}, {
+"args": [1, 1],
+"method": &"create_airplane"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgsc3"]
+_data = {
+"1": SubResource("Animation_yheen"),
+"4": SubResource("Animation_wx6iu"),
+"RESET": SubResource("Animation_mj2qu"),
+"asdasd": SubResource("Animation_amiax")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrav4"]
+size = Vector2(295.5, 1064)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncrg4"]
+size = Vector2(49, 1000)
+
+[node name="World" type="Node2D" groups=["World"]]
+script = ExtResource("1_1et6c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1298.0
+offset_bottom = 736.0
+texture = ExtResource("2_vb58n")
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path" parent="Paths" instance=ExtResource("3_w13f3")]
+position = Vector2(0, 150)
+
+[node name="Path2" parent="Paths" instance=ExtResource("3_w13f3")]
+position = Vector2(0, 250)
+
+[node name="Path3" parent="Paths" instance=ExtResource("3_w13f3")]
+position = Vector2(0, 350)
+
+[node name="Path4" parent="Paths" instance=ExtResource("3_w13f3")]
+position = Vector2(0, 450)
+
+[node name="Path5" parent="Paths" instance=ExtResource("3_w13f3")]
+position = Vector2(0, 550)
+
+[node name="Planes" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dgsc3")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Win" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("4_520sr")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Win/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Win/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "You win"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Win/MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+text = "menu"
+
+[node name="Losing" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("4_jf436")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Losing"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Losing/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Losing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "You lose"
+
+[node name="Restart" type="Button" parent="CanvasLayer/Losing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "start over"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Losing/MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+text = "menu"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_right = 106.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "60"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lukba")
+autoplay = true
+
+[node name="Delete" type="Area2D" parent="."]
+process_mode = 3
+position = Vector2(-441, 350)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("6_mtcxr")
+side = -1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Delete"]
+shape = SubResource("RectangleShape2D_vrav4")
+
+[node name="Delete2" type="Area2D" parent="."]
+process_mode = 3
+position = Vector2(1728, 360)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("6_mtcxr")
+side = 1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Delete2"]
+shape = SubResource("RectangleShape2D_vrav4")
+
+[node name="BeDelete" type="Area2D" parent="."]
+position = Vector2(-222, 356)
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("7_tvr3h")
+side = -1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeDelete"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_ncrg4")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="BeDelete2" type="Area2D" parent="."]
+position = Vector2(1512, 368)
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("7_tvr3h")
+side = 1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeDelete2"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_ncrg4")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="pressed" from="CanvasLayer/Win/MarginContainer/VBoxContainer/Menu" to="CanvasLayer/Losing" method="_on_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Losing/MarginContainer/VBoxContainer/Restart" to="CanvasLayer/Losing" method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/Losing/MarginContainer/VBoxContainer/Menu" to="CanvasLayer/Losing" method="_on_menu_pressed"]
+[connection signal="area_entered" from="Delete" to="Delete" method="_on_area_entered"]
+[connection signal="body_entered" from="Delete" to="Delete" method="_on_body_entered"]
+[connection signal="area_entered" from="Delete2" to="Delete2" method="_on_area_entered"]
+[connection signal="body_entered" from="Delete2" to="Delete2" method="_on_body_entered"]
+[connection signal="area_entered" from="BeDelete" to="BeDelete" method="_on_area_entered"]
+[connection signal="area_entered" from="BeDelete2" to="BeDelete2" method="_on_area_entered"]

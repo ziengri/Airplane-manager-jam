@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://ok3vyvwpie00"]
+
+[ext_resource type="Script" path="res://plane_edit.gd" id="1_22fd3"]
+
+[node name="PlaneEdit" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+script = ExtResource("1_22fd3")
+
+[node name="Path" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="Side" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+item_count = 2
+popup/item_0/text = "Right"
+popup/item_0/id = 0
+popup/item_1/text = "Left"
+popup/item_1/id = 1
+
+[node name="Type" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+item_count = 4
+popup/item_0/text = "passenger"
+popup/item_0/id = 0
+popup/item_1/text = "maize"
+popup/item_1/id = 1
+popup/item_2/text = "fighter"
+popup/item_2/id = 2
+popup/item_3/text = "сargo"
+popup/item_3/id = 3
+
+[node name="TimePlane" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+flat = true
+
+[connection signal="item_selected" from="Path" to="." method="_on_path_item_selected"]
+[connection signal="item_selected" from="Side" to="." method="_on_side_item_selected"]
+[connection signal="item_selected" from="Type" to="." method="_on_type_item_selected"]
+[connection signal="focus_entered" from="TimePlane" to="." method="_on_time_plane_focus_entered"]
+[connection signal="focus_exited" from="TimePlane" to="." method="_on_time_plane_focus_exited"]
+[connection signal="pressed" from="CheckBox" to="." method="_on_check_box_pressed"]

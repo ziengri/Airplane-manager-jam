@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci1wlsvosy2yk"]
+
+[ext_resource type="Script" path="res://Globals/Au.gd" id="1_o4x0a"]
+
+[node name="Au" type="Node"]
+script = ExtResource("1_o4x0a")
+
+[node name="MenuSound" type="AudioStreamPlayer" parent="."]
+
+[node name="WinAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="LoseAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="Ui" type="AudioStreamPlayer" parent="."]
+
+[node name="Plane" type="AudioStreamPlayer" parent="."]
+
+[connection signal="finished" from="MenuSound" to="." method="_on_menu_sound_finished"]

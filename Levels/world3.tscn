@@ -1,0 +1,276 @@
+[gd_scene load_steps=13 format=3 uid="uid://jtv3707vlc2e"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_cph4h"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_wjgov"]
+[ext_resource type="PackedScene" uid="uid://bp2oj75gudlbp" path="res://Scenes/path.tscn" id="3_pe0wk"]
+[ext_resource type="Script" path="res://Scripts/Win.gd" id="4_224u3"]
+[ext_resource type="Script" path="res://Scripts/Losing.gd" id="4_ij8ik"]
+[ext_resource type="AudioStream" uid="uid://bf0gu5wi01ffo" path="res://Audio/Sound/Airplane-01.wav" id="6_72tk8"]
+
+[sub_resource type="Animation" id="Animation_5470w"]
+resource_name = "3"
+length = 60.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 1, 6.5, 10, 16, 25, 27.8, 28, 35, 38, 40, 43, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [2, "т"],
+"method": &"create_airplane_LEFT"
+}, {
+"args": [3, "к"],
+"method": &"create_airplane_RIGHT"
+}, {
+"args": [0, "б"],
+"method": &"create_airplane_LEFT"
+}, {
+"args": [3, "и"],
+"method": &"create_airplane_LEFT"
+}, {
+"args": [0, "и"],
+"method": &"create_airplane_LEFT"
+}, {
+"args": [3, "к"],
+"method": &"create_airplane_LEFT"
+}, {
+"args": [0, "б"],
+"method": &"create_airplane_LEFT"
+}, {
+"args": [0, "к"],
+"method": &"create_airplane_RIGHT"
+}, {
+"args": [3, "б"],
+"method": &"create_airplane_RIGHT"
+}, {
+"args": [3, "и"],
+"method": &"create_airplane_LEFT"
+}, {
+"args": [2, "к"],
+"method": &"create_airplane_LEFT"
+}, {
+"args": [3, "б"],
+"method": &"create_airplane_RIGHT"
+}, {
+"args": [],
+"method": &"win"
+}]
+}
+
+[sub_resource type="VisualShaderNodeSDFRaymarch" id="VisualShaderNodeSDFRaymarch_gmvcm"]
+
+[sub_resource type="Animation" id="Animation_mj2qu"]
+length = 0.001
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [SubResource("VisualShaderNodeSDFRaymarch_gmvcm"), 0],
+"method": &"create_airplane"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_amiax"]
+resource_name = "asdasd"
+length = 60.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.5, 3.5, 4, 6, 8, 8.5, 15, 16, 21),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0, 1],
+"method": &"create_airplane"
+}, {
+"args": [0, -1],
+"method": &"create_airplane"
+}, {
+"args": [1, -1],
+"method": &"create_airplane"
+}, {
+"args": [0, 1],
+"method": &"create_airplane"
+}, {
+"args": [0, 1],
+"method": &"create_airplane"
+}, {
+"args": [0, -1],
+"method": &"create_airplane"
+}, {
+"args": [1, 1],
+"method": &"create_airplane"
+}, {
+"args": [0, 1],
+"method": &"create_airplane"
+}, {
+"args": [1, -1],
+"method": &"create_airplane"
+}, {
+"args": [1, 1],
+"method": &"create_airplane"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgsc3"]
+_data = {
+"3": SubResource("Animation_5470w"),
+"RESET": SubResource("Animation_mj2qu"),
+"asdasd": SubResource("Animation_amiax")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgma4"]
+size = Vector2(14, 741)
+
+[node name="World" type="Node2D" groups=["World"]]
+script = ExtResource("1_cph4h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1298.0
+offset_bottom = 736.0
+texture = ExtResource("2_wjgov")
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path" parent="Paths" instance=ExtResource("3_pe0wk")]
+position = Vector2(0, 200)
+
+[node name="Path2" parent="Paths" instance=ExtResource("3_pe0wk")]
+position = Vector2(0, 300)
+
+[node name="Path3" parent="Paths" instance=ExtResource("3_pe0wk")]
+position = Vector2(0, 400)
+
+[node name="Path4" parent="Paths" instance=ExtResource("3_pe0wk")]
+position = Vector2(0, 500)
+
+[node name="Planes" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dgsc3")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Win" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("4_224u3")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Win/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Win/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "You win"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Win/MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+text = "menu"
+
+[node name="Losing" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("4_ij8ik")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Losing"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Losing/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Losing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "You lose"
+
+[node name="Restart" type="Button" parent="CanvasLayer/Losing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "start over"
+
+[node name="Menu" type="Button" parent="CanvasLayer/Losing/MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+text = "menu"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_right = 106.0
+offset_bottom = 144.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "60"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_72tk8")
+autoplay = true
+
+[node name="LeftAreaSwitcher" type="Area2D" parent="."]
+position = Vector2(-24, 362)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftAreaSwitcher"]
+shape = SubResource("RectangleShape2D_bgma4")
+
+[node name="RightAreaSwitcher" type="Area2D" parent="."]
+position = Vector2(1309, 366)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightAreaSwitcher"]
+shape = SubResource("RectangleShape2D_bgma4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(727, 367)
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="pressed" from="CanvasLayer/Win/MarginContainer/VBoxContainer/Menu" to="CanvasLayer/Losing" method="_on_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Losing/MarginContainer/VBoxContainer/Restart" to="CanvasLayer/Losing" method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/Losing/MarginContainer/VBoxContainer/Menu" to="CanvasLayer/Losing" method="_on_menu_pressed"]
+[connection signal="body_entered" from="LeftAreaSwitcher" to="." method="_on_left_area_switcher_body_entered"]
+[connection signal="body_entered" from="RightAreaSwitcher" to="." method="_on_right_area_switcher_body_entered"]

@@ -1,0 +1,261 @@
+[gd_scene load_steps=5 format=3 uid="uid://xps5jq4fbhp5"]
+
+[ext_resource type="Script" path="res://Scripts/Main_menu.gd" id="1_4p87c"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_pskvo"]
+[ext_resource type="Script" path="res://Scripts/Options.gd" id="2_6h3bw"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_7gjno"]
+
+[node name="Menu" type="Node"]
+script = ExtResource("1_pskvo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.85098, 0.854902, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7gjno")
+
+[node name="Main_menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4p87c")
+
+[node name="MarginContainer" type="MarginContainer" parent="Main_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Main_menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main_menu/MarginContainer/VBoxContainer2"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+text = "Air-Managair"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main_menu/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Play" type="Button" parent="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Start Game"
+
+[node name="Editor" type="Button" parent="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = " Level editor
+"
+
+[node name="Options" type="Button" parent="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Authors" type="Button" parent="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Authors"
+
+[node name="Exit" type="Button" parent="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Exit
+"
+
+[node name="Options" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_6h3bw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SoundVolume" type="Control" parent="Options/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="volume" type="Label" parent="Options/MarginContainer/VBoxContainer/SoundVolume"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_right = 64.5
+offset_bottom = 42.0
+grow_horizontal = 2
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Options/MarginContainer/VBoxContainer/SoundVolume"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.5
+offset_top = -16.0
+offset_right = 64.5
+grow_horizontal = 2
+grow_vertical = 0
+min_value = -30.0
+max_value = 5.0
+
+[node name="FullscreenBool" type="Control" parent="Options/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Fullscreen" type="CheckButton" parent="Options/MarginContainer/VBoxContainer/FullscreenBool"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -12.0
+offset_right = 64.5
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 3
+
+[node name="Label" type="Label" parent="Options/MarginContainer/VBoxContainer/FullscreenBool/Fullscreen"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = -2.0
+offset_right = 134.0
+offset_bottom = 24.0
+text = "Fullscreen"
+
+[node name="Menu" type="Button" parent="Options/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "back"
+
+[node name="Authors" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Authors"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Authors/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label3" type="Label" parent="Authors/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "MANAGAIR by Catslick Pixel:
+"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Authors/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Authors/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "
+
+ART:
+Gekslik, JKOns
+
+AUDIO:
+kenji
+
+
+"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Authors/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "
+CODE:
+Yulia,Pasha
+
+DESCRIPTION:
+corvocures
+
+"
+horizontal_alignment = 1
+
+[node name="Menu" type="Button" parent="Authors/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "back"
+
+[connection signal="pressed" from="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer/Play" to="Main_menu" method="_on_play_pressed"]
+[connection signal="pressed" from="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer/Editor" to="Main_menu" method="_on_button_pressed"]
+[connection signal="pressed" from="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="Main_menu" method="_on_options_pressed"]
+[connection signal="pressed" from="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer/Authors" to="Main_menu" method="_on_authors_pressed"]
+[connection signal="pressed" from="Main_menu/MarginContainer/VBoxContainer2/VBoxContainer/Exit" to="Main_menu" method="_on_exit_pressed"]
+[connection signal="value_changed" from="Options/MarginContainer/VBoxContainer/SoundVolume/HSlider" to="Options" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/FullscreenBool/Fullscreen" to="Options" method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/Menu" to="Options" method="_on_menu_pressed"]
+[connection signal="pressed" from="Authors/MarginContainer/HBoxContainer/Menu" to="Options" method="_on_menu_pressed"]

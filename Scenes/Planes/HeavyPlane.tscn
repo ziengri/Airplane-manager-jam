@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://ti0lipytrhgv"]
+
+[ext_resource type="Script" path="res://Scripts/Planes/HeavyPlane.gd" id="1_asqap"]
+[ext_resource type="Texture2D" uid="uid://c5628rjgmnx0g" path="res://Sprites/grus.png" id="2_ugo1k"]
+[ext_resource type="AudioStream" uid="uid://c02nfj1h3ulgp" path="res://Audio/Big airplane.wav" id="3_vkqh8"]
+[ext_resource type="Script" path="res://Scripts/AudioStreamPlayer.gd" id="4_gn78d"]
+
+[sub_resource type="Shader" id="Shader_v3xoh"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+    vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+    vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+    vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+    float outline = 0.0;
+
+    for (int i = 0; i < OFFSETS.length(); i++) {
+        outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+    }
+    outline = min(outline, 1.0);
+
+    vec4 color = texture(TEXTURE, UV);
+    COLOR = mix(color, line_color, outline - color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kipgp"]
+shader = SubResource("Shader_v3xoh")
+shader_parameter/line_color = Vector4(0, 127, 0, 255)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0xvl"]
+size = Vector2(286, 55)
+
+[node name="HeavyPlane" type="CharacterBody2D"]
+position = Vector2(0, -8)
+scale = Vector2(1.75, 1.75)
+collision_mask = 0
+script = ExtResource("1_asqap")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kipgp")
+position = Vector2(0, -35)
+texture = ExtResource("2_ugo1k")
+offset = Vector2(0, -10)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, -42.5238)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(1, 19.5)
+shape = SubResource("RectangleShape2D_t0xvl")
+debug_color = Color(0.85098, 0.321569, 0.494118, 0.419608)
+
+[node name="HitboxArea" type="Area2D" parent="."]
+position = Vector2(0, -42.5238)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxArea"]
+polygon = PackedVector2Array(-109, 39.0238, -102.5, 44.0238, -84, 40.5238, -42.5, 40.0238, -27.5, 44.0238, -26.5, 47.0238, 9.5, 47.5238, 13.5, 43.5238, 54, 39.5238, 119.5, 8.5238, 128.5, 12.0238, 140, 10.0238, 145, -33.4762, 122, -32.4762, 108.5, -11.9762, 98, -7.9762, 50.5, -5.4762, -2, -6.4762, -15, -7.9762, -83, -6.4762, -107.5, -6.9762, -116.5, -5.4762, -128.5, 5.5238, -140, 15.5238, -143, 23.0238, -140.5, 29.5238, -130.5, 33.0238)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -42.5238)
+polygon = PackedVector2Array(-109, 39.0238, -102.5, 44.0238, -84, 40.5238, -42.5, 40.0238, -27.5, 44.0238, -26.5, 47.0238, 9.5, 47.5238, 13.5, 43.5238, 54, 39.5238, 119.5, 8.5238, 128.5, 12.0238, 140, 10.0238, 145, -33.4762, 122, -32.4762, 108.5, -11.9762, 98, -7.9762, 50.5, -5.4762, -2, -6.4762, -15, -7.9762, -83, -6.4762, -107.5, -6.9762, -116.5, -5.4762, -128.5, 5.5238, -140, 15.5238, -143, 23.0238, -140.5, 29.5238, -130.5, 33.0238)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vkqh8")
+volume_db = 4.0
+autoplay = true
+script = ExtResource("4_gn78d")
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

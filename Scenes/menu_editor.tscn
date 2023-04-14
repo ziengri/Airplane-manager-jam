@@ -1,0 +1,259 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1javlvigrqg0"]
+
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="1_4g0xj"]
+[ext_resource type="Script" path="res://Scenes/menu_editor.gd" id="1_frd33"]
+[ext_resource type="Script" path="res://Scenes/Create_lvl.gd" id="3_plv4r"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbpcj"]
+load_path = "res://.godot/imported/Срус.png-f04bf45671b44aecb6e10cb160da49f8.ctex"
+
+[node name="Menu_Editor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_frd33")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4g0xj")
+
+[node name="Create" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_plv4r")
+
+[node name="MarginContainer" type="MarginContainer" parent="Create"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.5
+offset_top = -378.0
+offset_right = 491.5
+offset_bottom = 378.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 350
+theme_override_constants/margin_top = 250
+theme_override_constants/margin_right = 350
+theme_override_constants/margin_bottom = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Create/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="NameLevel" type="HBoxContainer" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="Create/MarginContainer/VBoxContainer/NameLevel"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Level name"
+
+[node name="Control" type="Control" parent="Create/MarginContainer/VBoxContainer/NameLevel"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextEdit" type="LineEdit" parent="Create/MarginContainer/VBoxContainer/NameLevel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+max_length = 10
+
+[node name="NumberPaths" type="HBoxContainer" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="Create/MarginContainer/VBoxContainer/NumberPaths"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Number of paths"
+
+[node name="Control" type="Control" parent="Create/MarginContainer/VBoxContainer/NumberPaths"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="OptionButton" type="OptionButton" parent="Create/MarginContainer/VBoxContainer/NumberPaths/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -17.5
+offset_right = 26.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 10
+item_count = 4
+selected = 0
+popup/item_0/text = "2"
+popup/item_0/id = 1
+popup/item_1/text = "3"
+popup/item_1/id = 2
+popup/item_2/text = "4"
+popup/item_2/id = 3
+popup/item_3/text = "5"
+popup/item_3/id = 4
+
+[node name="LevelTime" type="HBoxContainer" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="Create/MarginContainer/VBoxContainer/LevelTime"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Level time"
+
+[node name="Control" type="Control" parent="Create/MarginContainer/VBoxContainer/LevelTime"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="Create/MarginContainer/VBoxContainer/LevelTime/Control"]
+modulate = Color(0.309804, 0.380392, 0.454902, 0.74902)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.32
+anchor_right = 0.66
+anchor_bottom = 0.714286
+offset_left = 1.0
+offset_top = -4.0
+offset_right = 1.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_jbpcj")
+
+[node name="Label" type="Label" parent="Create/MarginContainer/VBoxContainer/LevelTime/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -17.0
+offset_top = -4.0
+offset_right = 17.0
+offset_bottom = 22.0
+grow_horizontal = 2
+text = "20"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Create/MarginContainer/VBoxContainer/LevelTime/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -16.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+min_value = 20.0
+value = 20.0
+
+[node name="Create" type="Button" parent="Create/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "create"
+
+[node name="Load" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Load"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.5
+offset_top = -378.0
+offset_right = 491.5
+offset_bottom = 378.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 350
+theme_override_constants/margin_top = 250
+theme_override_constants/margin_right = 350
+theme_override_constants/margin_bottom = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Load/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NumberPaths" type="HBoxContainer" parent="Load/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ChooseLevel" type="Label" parent="Load/MarginContainer/VBoxContainer/NumberPaths"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "choose level"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Load/MarginContainer/VBoxContainer/NumberPaths"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="OptionButton" type="OptionButton" parent="Load/MarginContainer/VBoxContainer/NumberPaths/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 10
+
+[node name="LoadLevel" type="Button" parent="Load/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "load level"
+
+[node name="CreateLevel" type="Button" parent="Load/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "create level"
+
+[connection signal="pressed" from="Create/MarginContainer/VBoxContainer/Create" to="Create" method="_on_create_pressed"]
+[connection signal="pressed" from="Load/MarginContainer/VBoxContainer/LoadLevel" to="." method="_on_load_level_pressed"]
+[connection signal="pressed" from="Load/MarginContainer/VBoxContainer/CreateLevel" to="." method="_on_create_level_pressed"]
