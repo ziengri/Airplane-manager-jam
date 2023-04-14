@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Main_menu.gd" id="1_4p87c"]
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_pskvo"]
 [ext_resource type="Script" path="res://Scripts/Options.gd" id="2_6h3bw"]
-[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_7gjno"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_aeopl"]
 
 [node name="Menu" type="Node"]
 script = ExtResource("1_pskvo")
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_7gjno")
+texture = ExtResource("2_aeopl")
 
 [node name="Main_menu" type="Control" parent="."]
 layout_mode = 3
