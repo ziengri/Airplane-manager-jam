@@ -14,10 +14,19 @@ extends Node
 
 
 
-var selected_airplane: CharacterBody2D
+
 var selected_level_file: Dictionary #Переменая выбраного уровня
-var selected_path
-var selected_lvl
+var EPE: Dictionary = {
+"12": [{"path":3,"side":"Right","type":"и","time":12}],
+"18": [{"path":2,"side":"Right","type":"и","time":12},{"path":3,"side":"Left","type":"и","time":12}],
+"42": [{"path":1,"side":"Left","type":"и","time":12}],
+"32": [{"path":4,"side":"Left","type":"и","time":12},{"path":3,"side":"Right","type":"и","time":12}]
+}
+
+
+var selected_airplane: CharacterBody2D
+var selected_path: Path2D
+var selected_lvl: int #obsolete
 var there_levels: Array = [1,2,3]
 var there_levels_completed: Array = [1,2,3]
 

@@ -12,6 +12,7 @@ var path_number:int
 
 
 func _ready() -> void:
+	name = str(path_number)
 	self.custom_minimum_size.x = pixels_per_second*(level_time+1)#Поменял на минимал сайз из за того что таймлайну размер задает БоксКонтейнер
 	
 	for i in range(level_time+1):
@@ -42,8 +43,31 @@ func _on_texture_rect_gui_input(event: InputEvent) -> void:
 
 #Создать точку на таймлайне
 func createtime_poit(second_on_timeline):
+	var second = int(second_on_timeline/pixels_per_second)
+	
+#	if G.EPE.has(str(second)):
+#		if G.EPE[str(second)].size() == 0:
+#
+#		if G.EPE[str(second)][0]["path"] == path_number:
+#			print('Уже есть')
+#			return
+	
+	G.EPE[str((second_on_timeline/pixels_per_second))] = [] #Создать событие в словаре
+	
 	var TimePoint_new = TimePoint.instantiate()
-	TimePoint_new.position.x = second_on_timeline +6 #+ 8
+	TimePoint_new.position.x = second_on_timeline +6
+	
+	TimePoint_new.selftime = second #Задать секунду точке
+	
+	%TextureRect.add_child(TimePoint_new)
+
+
+func createtime_point_from_second(second):
+	var TimePoint_new = TimePoint.instantiate()
+	TimePoint_new.position.x = (pixels_per_second*int(second))+6
+	
+	TimePoint_new.selftime = int(second) #Задать секунду точке
+	
 	%TextureRect.add_child(TimePoint_new)
 
 

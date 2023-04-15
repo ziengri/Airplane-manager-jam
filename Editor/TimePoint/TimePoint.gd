@@ -1,7 +1,21 @@
 extends Panel
 
-var time
+@onready var Lavel = $Label
+
+var selftime: int 
 var path
 
 func _ready():
-	pass
+	print(selftime," ",G.EPE[str(selftime)].size())
+	
+	if G.EPE[str(selftime)].size() == 2:
+		Lavel.text = "><"
+	elif G.EPE[str(selftime)].size() == 0:
+		Lavel.text = ""
+	else:
+		match G.EPE[str(selftime)][0]["side"]:
+			"Right":
+				Lavel.text = "<"
+			"Left":
+				Lavel.text = ">"
+
