@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://n0eqcjot4u3w"]
+[gd_scene load_steps=2 format=3 uid="uid://n0eqcjot4u3w"]
 
 [ext_resource type="Script" path="res://Editor/Window/WindowPlaneEdit.gd" id="1_axodw"]
-[ext_resource type="PackedScene" uid="uid://dxqs750g7hooi" path="res://Editor/PLaneEdit/plane_edit.tscn" id="2_jwmxs"]
 
 [node name="WindowPlaneEdit" type="Control"]
 layout_mode = 3
@@ -38,7 +37,7 @@ grow_vertical = 2
 [node name="TimelinePointInformatios" type="Label" parent="VBoxContainer2"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-text = "123"
+text = "Path: 0  Time: 0"
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -47,7 +46,7 @@ layout_mode = 2
 text = "create plane "
 
 [node name="TableContents" type="HBoxContainer" parent="VBoxContainer2"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 alignment = 1
 
@@ -83,28 +82,37 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PlaneEdit" parent="VBoxContainer2/Planes" instance=ExtResource("2_jwmxs")]
-layout_mode = 2
-
-[node name="PlaneEdit2" parent="VBoxContainer2/Planes" instance=ExtResource("2_jwmxs")]
-layout_mode = 2
-
 [node name="Probel" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 2
 
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(485, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -242.5
+offset_top = -31.0
+offset_right = 242.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Save" type="Button" parent="VBoxContainer2/Buttons"]
+[node name="Save" type="Button" parent="MarginContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Save"
 
-[node name="Delete" type="Button" parent="VBoxContainer2/Buttons"]
+[node name="Delete" type="Button" parent="MarginContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Delete"
 
 [connection signal="pressed" from="VBoxContainer2/CreatePlaneEd" to="." method="_on_create_plane_ed_pressed"]
-[connection signal="pressed" from="VBoxContainer2/Buttons/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Save" to="." method="_on_save_pressed"]

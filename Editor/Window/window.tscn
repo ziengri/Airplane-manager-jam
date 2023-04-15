@@ -6,6 +6,7 @@
 position = Vector2i(393, 480)
 size = Vector2i(530, 235)
 min_size = Vector2i(530, 235)
+max_size = Vector2i(530, 235)
 
 [node name="WindowPlaneEdit" parent="." instance=ExtResource("1_6vdns")]
 

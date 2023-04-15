@@ -68,6 +68,5 @@ flat = true
 [connection signal="item_selected" from="Path" to="." method="_on_path_item_selected"]
 [connection signal="item_selected" from="Side" to="." method="_on_side_item_selected"]
 [connection signal="item_selected" from="Type" to="." method="_on_type_item_selected"]
-[connection signal="focus_entered" from="TimePlane" to="." method="_on_time_plane_focus_entered"]
 [connection signal="focus_exited" from="TimePlane" to="." method="_on_time_plane_focus_exited"]
 [connection signal="pressed" from="CheckBox" to="." method="_on_check_box_pressed"]

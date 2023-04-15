@@ -4,84 +4,71 @@ extends HBoxContainer
 @onready var PathePlane = $Path
 @onready var SidePlane = $Side
 @onready var TypePlane = $Type
+@onready var Marker = $Control/CheckBox2
 
-var time = 0
-var type
-var side
-var path
 
-var NewPlane
+var time: int
+var type: String
+var side: int
+var path: int
+
+
+var NewPlane: Dictionary #Самолет
 
 func _ready():
 	TimePlane.text = str(time)
+	
 	for i in range(G.selected_level_file["path"]):
 		PathePlane.add_item(str(i+1))
-	PathePlane.select(-1)
 	
-
-func _on_path_item_selected(index):
-	path = PathePlane.get_item_text(index)
-	assemble_plane()
-	#save_plane()
+	PathePlane.select(path-1)
 
 
-
-func _on_side_item_selected(index):
-	side = SidePlane.get_item_text(index)
-	assemble_plane()
-	#save_plane()
-
-
-
-func _on_type_item_selected(index):
-	type = TypePlane.get_item_text(index)
-	assemble_plane()
-	#save_plane()
-
+#Собрать самолет
 func assemble_plane():
 	NewPlane = {"path":path,"side":side,"type":type,"time":time}
 
+#Передать собранный самолет либо указать на неккоректность
 func get_assemb_plane():
-	if path != null and side != null:
+	if path == null and side == null:
+		Marker.color = Color.RED
+		return null
+	if get_parent().get_parent().get_parent().match_check(self) != false:
 		assemble_plane()
+		Marker.color = Color.GREEN
 		return NewPlane
 	else:
+		Marker.color = Color.RED
 		return null
 
-#func save_plane():
-#	var PlaneSave = {"path":path,"side":side,"type":type,"time":time}
-#
-#	G.selected_level_file["Planes"].append(PlaneSave)
-#
-#	var file = FileAccess.open("user://levels/"+G.selected_level_file["name"]+".txt", FileAccess.WRITE)
-#	file.store_var(G.selected_level_file)
-#	print(G.selected_level_file)
 
+
+#ПУТЬ
+func _on_path_item_selected(index):
+	path = PathePlane.get_item_text(index)
+	assemble_plane()
+
+#СТОРОНА
+func _on_side_item_selected(index):
+	side = SidePlane.get_item_text(index)
+	assemble_plane()
+
+#ТИП
+func _on_type_item_selected(index):
+	type = TypePlane.get_item_text(index)
+	assemble_plane()
+
+
+
+
+#Удалить самолет
 func _on_check_box_pressed():
-	queue_free()
+	get_parent().get_parent().get_parent().delete_planes(self)
 
 
 
 
-
-
-
-
-func _on_time_plane_text_changed(new_text):
-	print("changed: ",$TimePlane.text)
-
-
-
-
-
-
-
-
-
-func _on_time_plane_focus_entered():
-	print("changed: ",$TimePlane.text)
-
-
+#Изменения времени самолета
 func _on_time_plane_focus_exited():
 	if TimePlane.text.is_valid_int() and int(TimePlane.text) <= G.selected_level_file["time"] and int(TimePlane.text) >= 0:
 		time = TimePlane.text

@@ -7,8 +7,9 @@ var level_path:int = G.selected_level_file["path"]
 
 
 func _ready() -> void:
-	for i in range(level_path):
+	for i in range(1,level_path+1):
 		var timeLine_new = timeLine.instantiate()
+		timeLine_new.path_number = i
 		%VBoxContainer.add_child(timeLine_new)
 	
 	print("Имя уровня: ",G.selected_level_file["name"])

@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://brqr7sm6dd0v3"]
 
 [node name="TimeSeparator" type="Control"]
-custom_minimum_size = Vector2(15, 18)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 15.0
+offset_right = 3.0
+offset_bottom = 18.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = -17.0
-offset_top = 15.0
-offset_right = 23.0
-offset_bottom = 41.0
+offset_left = 1.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 38.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 13
 text = "10"
@@ -23,3 +23,10 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 4.0
 grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 16.0
+offset_right = 20.0
+offset_bottom = 20.0

@@ -15,7 +15,7 @@ extends Node
 
 
 var selected_airplane: CharacterBody2D
-var selected_level_file:Dictionary #Переменая выбраного уровня
+var selected_level_file: Dictionary #Переменая выбраного уровня
 var selected_path
 var selected_lvl
 var there_levels: Array = [1,2,3]
