@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl820cwa8smy1"]
+
+[ext_resource type="PackedScene" uid="uid://n0eqcjot4u3w" path="res://Editor/window_plane_edit.tscn" id="1_6vdns"]
+
+[node name="Window" type="Window"]
+position = Vector2i(393, 480)
+size = Vector2i(530, 235)
+min_size = Vector2i(530, 235)
+
+[node name="WindowPlaneEdit" parent="." instance=ExtResource("1_6vdns")]
+
+[connection signal="close_requested" from="." to="WindowPlaneEdit" method="_on_window_close_requested"]

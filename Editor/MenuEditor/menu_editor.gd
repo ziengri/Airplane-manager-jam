@@ -37,5 +37,5 @@ func _on_option_button_item_selected(index):
 
 
 func _on_load_level_pressed():
-	if G.selected_level_file:
+	if G.selected_level_file != {}:
 		G.change_scene("level_editor")

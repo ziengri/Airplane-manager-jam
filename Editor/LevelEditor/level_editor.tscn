@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba2yk1rp2583x"]
+
+[ext_resource type="Script" path="res://Editor/LevelEditor/level_editor.gd" id="1_dp7hb"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_f5o62"]
+
+[node name="LevelEditor" type="Node2D" groups=["Editor"]]
+script = ExtResource("1_dp7hb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1279.0
+offset_bottom = 721.0
+texture = ExtResource("2_f5o62")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+offset_top = -2.0
+offset_right = 1280.0
+offset_bottom = 598.0
+grow_horizontal = 2
+theme_override_constants/separation = 65
+alignment = 1

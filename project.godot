@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-G="*res://Scenes/g.tscn"
+G="*res://Globals/g.tscn"
 Fs="*res://Globals/Fs.gd"
 Au="*res://Globals/au.tscn"
 

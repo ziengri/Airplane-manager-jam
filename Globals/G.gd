@@ -3,9 +3,9 @@ extends Node
 
 @onready var menu = preload("res://Scenes/menu.tscn")
 @onready var level_selection = preload("res://Scenes/level_select.tscn")
-@onready var level_edit_menu = preload("res://Scenes/menu_editor.tscn")
+@onready var level_edit_menu = preload("res://Editor/MenuEditor/menu_editor.tscn")
 
-@onready var level_editor = preload("res://Scenes/level_editor.tscn")
+@onready var level_editor = preload("res://Editor/LevelEditor/level_editor.tscn")
 @onready var game1 = preload("res://Levels/world.tscn")
 @onready var game2 = preload("res://Levels/world2.tscn")
 @onready var game3 = preload("res://Levels/world3.tscn")

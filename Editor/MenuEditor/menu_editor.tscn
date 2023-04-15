@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1javlvigrqg0"]
+[gd_scene load_steps=5 format=3 uid="uid://btmmlgggtx744"]
 
-[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="1_4g0xj"]
-[ext_resource type="Script" path="res://Scenes/menu_editor.gd" id="1_frd33"]
-[ext_resource type="Script" path="res://Scenes/Create_lvl.gd" id="3_plv4r"]
+[ext_resource type="Script" path="res://Editor/MenuEditor/menu_editor.gd" id="1_lshkk"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_h5fty"]
+[ext_resource type="Script" path="res://Scenes/Create_lvl.gd" id="3_xt2yn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbpcj"]
 
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_frd33")
+script = ExtResource("1_lshkk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_4g0xj")
+texture = ExtResource("2_h5fty")
 
 [node name="Create" type="Control" parent="."]
 visible = false
@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_plv4r")
+script = ExtResource("3_xt2yn")
 
 [node name="MarginContainer" type="MarginContainer" parent="Create"]
 layout_mode = 1

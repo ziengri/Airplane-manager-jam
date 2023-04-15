@@ -7,31 +7,20 @@
 [node name="TimeLine" type="Control"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
+anchors_preset = 0
 offset_bottom = 20.0
-grow_horizontal = 2
 size_flags_vertical = 0
 script = ExtResource("1_qd71x")
 
-[node name="HScrollBar" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-horizontal_scroll_mode = 2
-vertical_scroll_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="HScrollBar"]
+[node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
+custom_minimum_size = Vector2(1280, 20)
+layout_mode = 1
+offset_right = 10.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("CanvasTexture_5nir3")
 expand_mode = 2
 stretch_mode = 1
 
-[connection signal="gui_input" from="HScrollBar/TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]

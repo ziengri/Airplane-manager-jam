@@ -1,10 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://ok3vyvwpie00"]
+[gd_scene load_steps=2 format=3 uid="uid://dxqs750g7hooi"]
 
-[ext_resource type="Script" path="res://plane_edit.gd" id="1_22fd3"]
+[ext_resource type="Script" path="res://Editor/PLaneEdit/plane_edit.gd" id="1_4htpo"]
 
 [node name="PlaneEdit" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
-script = ExtResource("1_22fd3")
+script = ExtResource("1_4htpo")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="CheckBox2" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -5.5
+offset_right = 5.5
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 
 [node name="Path" type="OptionButton" parent="."]
 custom_minimum_size = Vector2(105, 0)

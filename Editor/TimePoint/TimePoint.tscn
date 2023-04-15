@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv7msv1dbmfei"]
+
+[ext_resource type="Script" path="res://Editor/TimePoint/TimePoint.gd" id="1_kprr2"]
+
+[node name="TimePoint" type="Panel"]
+custom_minimum_size = Vector2(15, 15)
+script = ExtResource("1_kprr2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 10
+text = "><"
+horizontal_alignment = 1

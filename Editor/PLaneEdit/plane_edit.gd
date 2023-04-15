@@ -56,7 +56,7 @@ func get_assemb_plane():
 #	var file = FileAccess.open("user://levels/"+G.selected_level_file["name"]+".txt", FileAccess.WRITE)
 #	file.store_var(G.selected_level_file)
 #	print(G.selected_level_file)
-#
+
 func _on_check_box_pressed():
 	queue_free()
 
@@ -86,4 +86,6 @@ func _on_time_plane_focus_exited():
 	if TimePlane.text.is_valid_int() and int(TimePlane.text) <= G.selected_level_file["time"] and int(TimePlane.text) >= 0:
 		time = TimePlane.text
 	else:
+		#if TimePlane.text != time:
+			#queue_free()
 		TimePlane.text = time
