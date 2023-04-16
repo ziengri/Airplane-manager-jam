@@ -43,7 +43,7 @@ func self_delete_point(): #Удалить точку как и на таймла
 	print(selfpath)
 	#G.EPE[str(selfpath)][str(selftime)] = []
 #	print(dic["1"].erase("42"))
-	get_tree().get_first_node_in_group("Editor").close_window()
+	get_tree().get_first_node_in_group("Editor").close_window(selfpath,selftime)
 	p.erase(t)
 	print(G.EPE)
 	

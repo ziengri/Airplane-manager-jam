@@ -36,8 +36,8 @@ func open_window(path,time): #Открыть окошко
 	win.show()
 	win.get_child(0).specify_data(path,time)
 
-func close_window():
-	win.hide()
+func close_window(path,time):
+	win.get_child(0).close_window(path,time)
 
 func update_point(path,second): #Обновить данные точки
 	%ContainerPath.get_node(path).get_node(second).display_side()
