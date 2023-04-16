@@ -36,7 +36,17 @@ func opem_window(): #Показать окошко с информацией о 
 	pass
 
 func self_delete_point(): #Удалить точку как и на таймлайне так и в файле
-	G.EPE[str(selfpath)][str(selftime)] = []
+	
+	var p: Dictionary = G.EPE[str(selfpath)]
+	var t = str(selftime)
+	print(selftime)
+	print(selfpath)
+	#G.EPE[str(selfpath)][str(selftime)] = []
+#	print(dic["1"].erase("42"))
+	get_tree().get_first_node_in_group("Editor").close_window()
+	p.erase(t)
+	print(G.EPE)
+	
 	queue_free()
 
 

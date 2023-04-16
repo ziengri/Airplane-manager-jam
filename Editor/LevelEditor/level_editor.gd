@@ -36,6 +36,8 @@ func open_window(path,time): #Открыть окошко
 	win.show()
 	win.get_child(0).specify_data(path,time)
 
+func close_window():
+	win.hide()
 
 func update_point(path,second): #Обновить данные точки
 	%ContainerPath.get_node(path).get_node(second).display_side()
@@ -48,6 +50,7 @@ func get_line(path):
 
 
 func _on_save_pressed(): #Сохранить файл
+	print("\n")
 	for path in G.EPE.keys():
 		print("PATH ",path)
 		print(G.EPE[path])

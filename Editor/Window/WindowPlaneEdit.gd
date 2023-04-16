@@ -28,6 +28,10 @@ func specify_data(path,time): #Вывести информацию
 
 func _on_window_close_requested(): #Закрыть окошко события
 	#save_planes()
+	if not G.EPE[str(path_number)].has(str(time_of_point)):
+		get_parent().hide()
+		delete_planes()
+		return
 	if G.EPE[str(path_number)][str(time_of_point)].size() == 0:
 #		G.EPE[str(path_number)].erase([str(time_of_point)])
 #		G.EPE.erase([str(path_number)])

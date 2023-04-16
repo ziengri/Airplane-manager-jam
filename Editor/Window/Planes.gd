@@ -6,7 +6,10 @@ func match_check(plane): #Проверка на совпадение side сам
 	for i in %Planes.get_children():
 		if i != plane:
 			if i.side == plane.side:
-				return false
+				if i.path != plane.path or i.time != plane.time:
+					return true
+				else:
+					return false
 	return true
 
 
