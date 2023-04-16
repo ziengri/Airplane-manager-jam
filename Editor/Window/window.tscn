@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl820cwa8smy1"]
+[gd_scene load_steps=2 format=3 uid="uid://chcbe68ivnrco"]
 
-[ext_resource type="PackedScene" uid="uid://n0eqcjot4u3w" path="res://Editor/window_plane_edit.tscn" id="1_6vdns"]
+[ext_resource type="PackedScene" uid="uid://n0eqcjot4u3w" path="res://Editor/Window/window_plane_edit.tscn" id="1_6vdns"]
 
 [node name="Window" type="Window"]
 position = Vector2i(393, 480)

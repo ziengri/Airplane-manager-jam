@@ -6,20 +6,25 @@ var TimeSeparator:PackedScene = preload("res://Editor/TimeSeparator/TimeSeparato
 var WindowPoint: PackedScene = preload("res://Editor/Window/window.tscn")
 
 var pixels_per_second = 26#+4
-var level_time:int = G.selected_level_file["time"]
-var level_path:int = G.selected_level_file["path"]
+var level_time:int = Fs.selected_level_file["time"]
+var level_path:int = Fs.selected_level_file["path"]
 var path_number:int
 
 
 func _ready() -> void:
 	name = str(path_number)
-	self.custom_minimum_size.x = pixels_per_second*(level_time+1)#Поменял на минимал сайз из за того что таймлайну размер задает БоксКонтейнер
+	
+	self.custom_minimum_size.x = pixels_per_second*(level_time+1)
+	
+#	if level_time < 50:
+#		pixels_per_second = 1280/(level_time-1)
+
 	
 	for i in range(level_time+1):
-		#Кордината метки
-		var cordx = pixels_per_second*i
-		#Cоздание метки
-		var TimeSeparator_new = TimeSeparator.instantiate()
+		var cordx = pixels_per_second*i #Кордината метки
+		
+		var TimeSeparator_new = TimeSeparator.instantiate() #Cоздание метки
+		
 		TimeSeparator_new.position.x = cordx
 		TimeSeparator_new.get_child(0).text = str(i)
 		%TextureRect.add_child(TimeSeparator_new)
@@ -27,48 +32,57 @@ func _ready() -> void:
 
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_click"):
-		print(get_local_mouse_position())
 		
 		#Расчитать секунду клика
 		var second_on_timeline = int(get_local_mouse_position().x/pixels_per_second)*pixels_per_second
-		print(int(get_local_mouse_position().x/pixels_per_second)*pixels_per_second)
 		
 		#Создать точку события
-		createtime_poit(second_on_timeline)
-		
-		#Создать окошко события
-		create_window(second_on_timeline) 
+		place_poit(second_on_timeline)
 
 
 
-#Создать точку на таймлайне
-func createtime_poit(second_on_timeline):
+
+#Разместить точку на таймлайне
+func place_poit(second_on_timeline):
+	if has_node(str((second_on_timeline/pixels_per_second))):
+		print("УЖЕ ЕСТЬ")
+		return
+	
+	G.EPE[str(path_number)][str((second_on_timeline/pixels_per_second))] = [] #Создать событие в словаре
+	
 	var second = int(second_on_timeline/pixels_per_second)
 	
-#	if G.EPE.has(str(second)):
-#		if G.EPE[str(second)].size() == 0:
-#
-#		if G.EPE[str(second)][0]["path"] == path_number:
-#			print('Уже есть')
-#			return
+	var point = create_point(second_on_timeline,second,path_number)  #Создать точку на таймлайне
+	add_child(point)
 	
-	G.EPE[str((second_on_timeline/pixels_per_second))] = [] #Создать событие в словаре
+	point.opem_window() 
+
+#Разместить точку на таймлайне при запуске
+func place_point_from_second(second): 
+	var second_on_timeline = (pixels_per_second*int(second))
 	
+	var point = create_point(second_on_timeline,second,path_number) 
+	add_child(point)    
+  
+func place_point_from_second_plane(second):
+	if has_node(second):
+		get_node(second).save_point()
+	else:
+		var second_on_timeline = (pixels_per_second*int(second))
+		var point = create_point(second_on_timeline,second,path_number) 
+		add_child(point)    
+	
+	print(get_node(second))
+
+#Создать точку
+func create_point(second_on_timeline,second,path):
 	var TimePoint_new = TimePoint.instantiate()
 	TimePoint_new.position.x = second_on_timeline +6
-	
 	TimePoint_new.selftime = second #Задать секунду точке
-	
-	%TextureRect.add_child(TimePoint_new)
+	TimePoint_new.selfpath = path #Задать путь точке
+	return TimePoint_new
 
 
-func createtime_point_from_second(second):
-	var TimePoint_new = TimePoint.instantiate()
-	TimePoint_new.position.x = (pixels_per_second*int(second))+6
-	
-	TimePoint_new.selftime = int(second) #Задать секунду точке
-	
-	%TextureRect.add_child(TimePoint_new)
 
 
 

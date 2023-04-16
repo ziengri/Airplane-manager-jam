@@ -2,7 +2,7 @@ extends Node
 
 func _ready():
 	switching($Main_menu)
-	G.selected_level_file = {}
+	Fs.selected_level_file = {}
 #Функция показывания раздела меню
 func switching(node):
 	Au.UiPlay()

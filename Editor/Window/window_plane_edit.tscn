@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://n0eqcjot4u3w"]
+[gd_scene load_steps=3 format=3 uid="uid://n0eqcjot4u3w"]
 
-[ext_resource type="Script" path="res://Editor/Window/WindowPlaneEdit.gd" id="1_axodw"]
+[ext_resource type="Script" path="res://Editor/Window/WindowPlaneEdit.gd" id="1_dxh1s"]
+[ext_resource type="Script" path="res://Editor/Window/Planes.gd" id="2_y7bmu"]
 
 [node name="WindowPlaneEdit" type="Control"]
 layout_mode = 3
@@ -9,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_axodw")
+script = ExtResource("1_dxh1s")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -81,6 +82,7 @@ horizontal_alignment = 1
 [node name="Planes" type="VBoxContainer" parent="VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("2_y7bmu")
 
 [node name="Probel" type="Label" parent="VBoxContainer2"]
 layout_mode = 2

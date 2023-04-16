@@ -20,12 +20,16 @@ func _ready():
 	OptButLoad.connect("item_selected",_on_option_button_item_selected)
 	switching($Load)
 	if Fs.external_levels == {}:
+		$Load/MarginContainer/VBoxContainer/InfBox.hide()
 		return
 	
 	for level in Fs.external_levels:
 		OptButLoad.add_item(level)
 	
-	G.selected_level_file = Fs.external_levels[OptButLoad.get_item_text(0)]
+	Fs.selected_level_file = Fs.external_levels[OptButLoad.get_item_text(0)]
+	%Info.text = "Path: "+str(Fs.selected_level_file["path"])+"    Time: "+str(Fs.selected_level_file["time"])
+	#$Load/MarginContainer/VBoxContainer/InfBox.hide()
+
 
 
 func _on_create_level_pressed():
@@ -33,9 +37,10 @@ func _on_create_level_pressed():
 
 
 func _on_option_button_item_selected(index):
-	G.selected_level_file = Fs.external_levels[OptButLoad.get_item_text(index)]
+	Fs.selected_level_file = Fs.external_levels[OptButLoad.get_item_text(index)]
+	%Info.text = "Path: "+str(Fs.selected_level_file["path"])+"    Time: "+str(Fs.selected_level_file["time"])
 
 
 func _on_load_level_pressed():
-	if G.selected_level_file != {}:
+	if Fs.selected_level_file != {}:
 		G.change_scene("level_editor")

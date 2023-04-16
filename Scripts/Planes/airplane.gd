@@ -45,9 +45,8 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		Sprite.material.set('shader_parameter/line_thickness',3)
 		Sprite.material.set('shader_parameter/line_color',Color(0,1,0,0.5))
 		G.selected_airplane = self
-#		G.cursor.visible=true
+
 
 func _on_hitbox_area_entered(_area):
 	if can_colide:
 		get_tree().get_first_node_in_group("World").losing()
-	#queue_free()

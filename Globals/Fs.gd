@@ -1,7 +1,8 @@
 extends Node
 
 
-@onready var external_levels: Dictionary
+@onready var external_levels: Dictionary #Переменная подгруженных файлов
+var selected_level_file: Dictionary  #Переменая выбраного уровня
 
 func _ready():
 	get_external_levels()
