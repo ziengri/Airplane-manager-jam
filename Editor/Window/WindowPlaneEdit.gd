@@ -28,6 +28,7 @@ func specify_data(path,time): #Вывести информацию
 func close_window(path,time):
 	if path == path_number and time == time_of_point:
 		get_parent().hide()
+
 func _on_window_close_requested(): #Закрыть окошко события
 	#save_planes()
 	if not G.EPE[str(path_number)].has(str(time_of_point)):

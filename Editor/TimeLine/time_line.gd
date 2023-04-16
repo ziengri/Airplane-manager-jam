@@ -77,7 +77,7 @@ func place_point_from_second_plane(second):
 #Создать точку
 func create_point(second_on_timeline,second,path):
 	var TimePoint_new = TimePoint.instantiate()
-	TimePoint_new.position.x = second_on_timeline +6
+	TimePoint_new.position.x = second_on_timeline #+6
 	TimePoint_new.selftime = second #Задать секунду точке
 	TimePoint_new.selfpath = path #Задать путь точке
 	return TimePoint_new

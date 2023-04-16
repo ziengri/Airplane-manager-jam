@@ -4,16 +4,19 @@
 
 [node name="TimePoint" type="Panel"]
 custom_minimum_size = Vector2(15, 15)
-offset_right = 15.0
+anchors_preset = -1
+anchor_left = 0.003
+anchor_right = 0.003
+offset_left = -1.84
+offset_right = 13.16
 offset_bottom = 15.0
 script = ExtResource("1_kprr2")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_top = 1.0
 offset_right = 16.0
-offset_bottom = 16.0
+offset_bottom = 18.0
 theme_override_font_sizes/font_size = 10
 text = "><"
 horizontal_alignment = 1
