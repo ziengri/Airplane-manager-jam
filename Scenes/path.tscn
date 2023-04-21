@@ -20,10 +20,10 @@ position = Vector2(640.5, -2)
 shape = SubResource("RectangleShape2D_wyyxy")
 
 [node name="Mark1" parent="." instance=ExtResource("2_gtks7")]
-position = Vector2(49, -40)
+position = Vector2(49, -10)
 
 [node name="Mark2" parent="." instance=ExtResource("2_gtks7")]
-position = Vector2(1228, -40)
+position = Vector2(1228, -10)
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

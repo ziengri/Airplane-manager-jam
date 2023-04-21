@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=3 uid="uid://bn81a3uugvmmm"]
+
+[ext_resource type="Script" path="res://InstLevel/Level.gd" id="1_0rbm5"]
+[ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_kxepi"]
+[ext_resource type="AudioStream" uid="uid://bf0gu5wi01ffo" path="res://Audio/Sound/Airplane-01.wav" id="3_7l48r"]
+[ext_resource type="Script" path="res://Scripts/Win.gd" id="4_wu82h"]
+[ext_resource type="Script" path="res://Scripts/Losing.gd" id="5_uksmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4v41"]
+size = Vector2(14, 741)
+
+[node name="World" type="Node2D" groups=["World"]]
+script = ExtResource("1_0rbm5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_kxepi")
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Planes" type="Node2D" parent="."]
+
+[node name="LeftAreaSwitcher" type="Area2D" parent="."]
+position = Vector2(-24, 362)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftAreaSwitcher"]
+shape = SubResource("RectangleShape2D_d4v41")
+
+[node name="RightAreaSwitcher" type="Area2D" parent="."]
+position = Vector2(1309, 366)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightAreaSwitcher"]
+shape = SubResource("RectangleShape2D_d4v41")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_7l48r")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="Win" type="Control" parent="Ui"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("4_wu82h")
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui/Win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Win/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Ui/Win/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "You win"
+
+[node name="Next_level" type="Button" parent="Ui/Win/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Next level"
+
+[node name="Menu" type="Button" parent="Ui/Win/MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+text = "menu"
+
+[node name="Losing" type="Control" parent="Ui"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("5_uksmr")
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui/Losing"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Losing/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Ui/Losing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "You lose"
+
+[node name="Restart" type="Button" parent="Ui/Losing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "start over"
+
+[node name="Menu" type="Button" parent="Ui/Losing/MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+text = "menu"
+
+[node name="Label" type="Label" parent="Ui"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_right = 106.0
+offset_bottom = 144.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "60"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="timer_before_create" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="pressed" from="Ui/Win/MarginContainer/VBoxContainer/Next_level" to="Ui/Win" method="_on_next_level_pressed"]
+[connection signal="pressed" from="Ui/Win/MarginContainer/VBoxContainer/Menu" to="Ui/Losing" method="_on_menu_pressed"]
+[connection signal="pressed" from="Ui/Losing/MarginContainer/VBoxContainer/Restart" to="Ui/Losing" method="_on_restart_pressed"]
+[connection signal="pressed" from="Ui/Losing/MarginContainer/VBoxContainer/Menu" to="Ui/Losing" method="_on_menu_pressed"]

@@ -83,4 +83,7 @@ text = "launch"
 [node name="Window" parent="CanvasLayer/Control" instance=ExtResource("3_8ldul")]
 position = Vector2i(375, 480)
 
+[node name="TestLevelScene" type="Node2D" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/HBoxContainer/Launch" to="." method="_on_launch_pressed"]

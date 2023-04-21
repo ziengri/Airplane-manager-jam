@@ -25,20 +25,18 @@ func specify_data(path,time): #Вывести информацию
 		%Planes.add_child(P)
 		P.inf_up()
 
+
 func close_window(path,time):
 	if path == path_number and time == time_of_point:
 		get_parent().hide()
 
+
 func _on_window_close_requested(): #Закрыть окошко события
-	#save_planes()
 	if not G.EPE[str(path_number)].has(str(time_of_point)):
 		get_parent().hide()
 		delete_planes()
 		return
 	if G.EPE[str(path_number)][str(time_of_point)].size() == 0:
-#		G.EPE[str(path_number)].erase([str(time_of_point)])
-#		G.EPE.erase([str(path_number)])
-#		print("УБРАЛ ", G.EPE[str(path_number)][str(time_of_point)])
 		get_tree().get_first_node_in_group("Editor").delete_point(str(path_number),str(time_of_point))
 	
 	get_parent().hide()
@@ -66,14 +64,14 @@ func _on_create_plane_ed_pressed(): #Добавить макет самолет�
 
 
 func save_planes(): #Сохранить все самолеты в событии
-	print("\nСамолеты сохранены\n путь: ",path_number," cекунда: ",time_of_point)
+	#print("\nСамолеты сохранены\n путь: ",path_number," cекунда: ",time_of_point)
 	
 	G.EPE[str(path_number)][str(time_of_point)] = [] #Обнуляю массив для того чтобы не плодить повторения
 	
 	for i in %Planes.get_children():
 		var PLANE = i.get_assemb_plane() #Cловарь самолета
 		if PLANE != null: #Проверяю корректен ли самолет
-			print(" - ",PLANE)
+			#print(" - ",PLANE)
 			
 			if PLANE["path"] != path_number or PLANE["time"] != time_of_point: #Если время или путь самолета не равен событию окошка
 				if check_for_availability_pane(PLANE): #Проверка на перемещение самолета на другую точку события
@@ -94,7 +92,7 @@ func check_for_availability_pane(PLANE): #Проверка на перемеще
 	
 	var a_path_plane = G.EPE[path_plane]
 	
-	if a_path_plane.has(time_plane): #Если есть добавляю
+	if a_path_plane.has(time_plane): #Если есть
 		var a_array_plane = G.EPE[path_plane][time_plane]
 		
 		if a_array_plane.size() == 2: #Если массив полон
@@ -103,6 +101,9 @@ func check_for_availability_pane(PLANE): #Проверка на перемеще
 		if a_array_plane.size() == 1: #Если в массиве один самолет
 			if a_array_plane[0]["side"] == PLANE["side"]: #Если стороны равны
 				return false
+			if a_array_plane[0]["side"] != PLANE["side"]: #Если стороны не равны
+				G.EPE[str(PLANE["path"])][str(PLANE["time"])].append(PLANE)
+				return true
 		
 		if a_array_plane.size() == 0: #Если в массив пуст
 			G.EPE[str(PLANE["path"])][str(PLANE["time"])].append(PLANE)

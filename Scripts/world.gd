@@ -20,6 +20,8 @@ func _input(event):
 @onready var TimeToWin = $CanvasLayer/Label
 
 
+
+
 func _ready():
 	for i in $Paths.get_children():
 		paths.push_back(i)

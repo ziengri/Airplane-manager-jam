@@ -5,7 +5,7 @@ extends Control
 @onready var NumberPaths = $MarginContainer/VBoxContainer/NumberPaths/Control/OptionButton
 @onready var SlideTime = $MarginContainer/VBoxContainer/LevelTime/Control/Label
 
-var time_l = 20
+var time_l = 50
 var path_l = 2
 var name_l: String
 

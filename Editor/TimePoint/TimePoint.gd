@@ -41,7 +41,7 @@ func self_delete_point(): #Удалить точку как и на таймла
 	var t = str(selftime)
 	get_tree().get_first_node_in_group("Editor").close_window(selfpath,selftime)
 	p.erase(t)
-	print(G.EPE)
+	#print(G.EPE)
 	
 	queue_free()
 
@@ -64,7 +64,9 @@ func _on_gui_input(event):  #Нажатия на точку
 		var selftime_new = int(position.x/26)
 		var p: Dictionary = G.EPE[str(selfpath)]
 		var t: String = str(selftime)
-		
+		if selftime_new > Fs.selected_level_file["time"] or selftime_new < 0: #Запрет за пределы
+			position = pos_old
+			return
 		if G.EPE[str(selfpath)].has(str(selftime_new)): #Если событие уже существует
 			var number = G.EPE[str(selfpath)][str(selftime)].size()
 			var number_new = G.EPE[str(selfpath)][str(selftime_new)].size()
@@ -80,7 +82,9 @@ func _on_gui_input(event):  #Нажатия на точку
 			
 			if (number + number_new) == 2: #Если 1 и 1
 				if number == 2: #Наше событие 2 самолета
+					G.EPE[str(selfpath)][str(selftime)][0]["time"] = int(selftime_new)
 					G.EPE[str(selfpath)][str(selftime_new)].append(G.EPE[str(selfpath)][str(selftime)][0])
+					G.EPE[str(selfpath)][str(selftime)][1]["time"] = int(selftime_new)
 					G.EPE[str(selfpath)][str(selftime_new)].append(G.EPE[str(selfpath)][str(selftime)][1])
 					G.EPE[str(selfpath)].erase(t) #Убираем свой массив
 					get_tree().get_first_node_in_group("Editor").update_point(str(selfpath),str(selftime_new)) #Обновить слитое событие
@@ -94,6 +98,7 @@ func _on_gui_input(event):  #Нажатия на точку
 					position = pos_old
 					return
 				elif G.EPE[str(selfpath)][str(selftime_new)][0]["side"] != G.EPE[str(selfpath)][str(selftime)][0]["side"]: #Cтороны не равны
+					G.EPE[str(selfpath)][str(selftime)][0]["time"] = int(selftime_new)
 					G.EPE[str(selfpath)][str(selftime_new)].append(G.EPE[str(selfpath)][str(selftime)][0]) #Добавляем самолет в массив слиятия 
 					G.EPE[str(selfpath)].erase(t) #Убираем свой массив
 					
@@ -103,6 +108,7 @@ func _on_gui_input(event):  #Нажатия на точку
 			
 			if (number + number_new) == 1: #Всего один самолет
 				if number == 1:
+					G.EPE[str(selfpath)][str(selftime)][0]["time"] = int(selftime_new)
 					G.EPE[str(selfpath)][str(selftime_new)].append(G.EPE[str(selfpath)][str(selftime)][0]) #Добавляем самолет в массив слиятия 
 					G.EPE[str(selfpath)].erase(t) #Убираем свой массив
 					
@@ -115,7 +121,8 @@ func _on_gui_input(event):  #Нажатия на точку
 					self_delete_point() #Окошко наше пустое событие
 		
 		if not G.EPE[str(selfpath)].has(str(selftime_new)): #Если события нет
-			
+			for plane in p[t]:
+				plane["time"] = int(selftime_new)
 			G.EPE[str(selfpath)][str(selftime_new)] =p[t]
 			
 			selftime = selftime_new

@@ -25,7 +25,6 @@ grow_vertical = 2
 texture = ExtResource("2_h5fty")
 
 [node name="Create" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -162,7 +161,7 @@ offset_top = -4.0
 offset_right = 17.0
 offset_bottom = 22.0
 grow_horizontal = 2
-text = "20"
+text = "50"
 horizontal_alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Create/MarginContainer/VBoxContainer/LevelTime/Control"]
@@ -178,15 +177,16 @@ offset_top = -16.0
 offset_right = 50.0
 grow_horizontal = 2
 grow_vertical = 0
-min_value = 20.0
+min_value = 50.0
 max_value = 180.0
-value = 20.0
+value = 50.0
 
 [node name="Create" type="Button" parent="Create/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "create"
 
 [node name="Load" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

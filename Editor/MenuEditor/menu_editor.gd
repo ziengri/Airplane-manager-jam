@@ -38,6 +38,7 @@ func _on_create_level_pressed():
 
 func _on_option_button_item_selected(index):
 	Fs.selected_level_file = Fs.external_levels[OptButLoad.get_item_text(index)]
+	print(Fs.selected_level_file["events"])
 	%Info.text = "Path: "+str(Fs.selected_level_file["path"])+"    Time: "+str(Fs.selected_level_file["time"])
 
 

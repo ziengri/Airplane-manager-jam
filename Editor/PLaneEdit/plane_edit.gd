@@ -42,21 +42,21 @@ func inf_up(): #Функция для того чтобы отобразить �
 #Собрать самолет
 func assemble_plane():
 	NewPlane = {"path":path,"side":side,"type":type,"time":time}
+	Marker.color = Color.GREEN
 
 
 #Передать собранный самолет либо указать на неккоректность
 func get_assemb_plane():
 	if type == "" or side == "":
-		Marker.color = Color.RED
+		mark()
 		return null
 	
 	if get_parent().match_check(self) != false:  #Передать               
 		assemble_plane()
-		Marker.color = Color.GREEN
 		return NewPlane
 	
 	else:
-		Marker.color = Color.RED
+		mark()
 		return null
 
 
@@ -66,17 +66,17 @@ func mark():
 #ПУТЬ
 func _on_path_item_selected(index):
 	path = int(PathePlane.get_item_text(index))
-	assemble_plane()
+	#assemble_plane()
 
 #СТОРОНА
 func _on_side_item_selected(index):
 	side = SidePlane.get_item_text(index)
-	assemble_plane()
+	#assemble_plane()
 
 #ТИП
 func _on_type_item_selected(index):
 	type = TypePlane.get_item_text(index)
-	assemble_plane()
+	#assemble_plane()
 
 
 
