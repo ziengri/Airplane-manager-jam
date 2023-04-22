@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn81a3uugvmmm"]
+[gd_scene load_steps=8 format=3 uid="uid://bn81a3uugvmmm"]
 
 [ext_resource type="Script" path="res://InstLevel/Level.gd" id="1_0rbm5"]
 [ext_resource type="Texture2D" uid="uid://bfiosk4bhist3" path="res://Sprites/sdfgh.png" id="2_kxepi"]
 [ext_resource type="AudioStream" uid="uid://bf0gu5wi01ffo" path="res://Audio/Sound/Airplane-01.wav" id="3_7l48r"]
 [ext_resource type="Script" path="res://Scripts/Win.gd" id="4_wu82h"]
 [ext_resource type="Script" path="res://Scripts/Losing.gd" id="5_uksmr"]
+[ext_resource type="Script" path="res://InstLevel/LosingEditor.gd" id="6_r17fr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4v41"]
 size = Vector2(14, 741)
@@ -117,6 +118,42 @@ process_mode = 2
 layout_mode = 2
 text = "menu"
 
+[node name="LosingEditor" type="Control" parent="Ui"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("6_r17fr")
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui/LosingEditor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/LosingEditor/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Ui/LosingEditor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "there was a collision"
+
+[node name="Restart" type="Button" parent="Ui/LosingEditor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "continue"
+
+[node name="Close" type="Button" parent="Ui/LosingEditor/MarginContainer/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+text = "close"
+
 [node name="Label" type="Label" parent="Ui"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -140,3 +177,5 @@ one_shot = true
 [connection signal="pressed" from="Ui/Win/MarginContainer/VBoxContainer/Menu" to="Ui/Losing" method="_on_menu_pressed"]
 [connection signal="pressed" from="Ui/Losing/MarginContainer/VBoxContainer/Restart" to="Ui/Losing" method="_on_restart_pressed"]
 [connection signal="pressed" from="Ui/Losing/MarginContainer/VBoxContainer/Menu" to="Ui/Losing" method="_on_menu_pressed"]
+[connection signal="pressed" from="Ui/LosingEditor/MarginContainer/VBoxContainer/Restart" to="Ui/LosingEditor" method="_on_continue_pressed"]
+[connection signal="pressed" from="Ui/LosingEditor/MarginContainer/VBoxContainer/Close" to="Ui/LosingEditor" method="_on_close_pressed"]

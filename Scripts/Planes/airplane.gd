@@ -39,7 +39,6 @@ func _input(event) -> void:
 		Sprite.material.set('shader_parameter/line_color',Color.BLACK)
 		G.selected_airplane = null
 
-
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int)->void:
 	if event.is_action_pressed("mouse_click"):
 		Sprite.material.set('shader_parameter/line_thickness',3)
@@ -48,5 +47,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 
 
 func _on_hitbox_area_entered(_area):
+	
 	if can_colide:
-		get_tree().get_first_node_in_group("World").losing()
+		if get_tree().get_current_scene().name == "World":
+			get_tree().get_first_node_in_group("World").losing()
+		elif get_tree().get_current_scene().name == "LevelEditor":
+			get_tree().get_first_node_in_group("World").losing_editor()
+

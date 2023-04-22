@@ -77,4 +77,5 @@ volume_db = -1.0
 autoplay = true
 script = ExtResource("4_j8qcr")
 
+[connection signal="mouse_shape_exited" from="." to="." method="_on_mouse_shape_exited"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

@@ -151,7 +151,9 @@ func create_airplane(pathNum : int, _side: String, type : String):
 	self.get_node("Planes").add_child(new_plane)
 
 
-
+func losing_editor():
+	get_tree().paused = true
+	$Ui/LosingEditor.show()
 
 
 func losing():
