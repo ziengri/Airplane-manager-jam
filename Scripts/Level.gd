@@ -17,4 +17,14 @@ func _on_gui_input(event):
 	if event.is_action_pressed("mouse_click") and open:
 		Au.MenuSoundStop()
 		G.selected_lvl = number
-		G.change_scene("game"+str(number))
+		var level = FileAccess.open("res://LevelFiles/"+str(G.selected_lvl)+".txt",FileAccess.READ)#("user://levels/"+"1.txt",FileAccess.READ)#
+		var levelContent = level.get_var()
+		Fs.selected_level_file = levelContent
+		G.change_scene("level_inst")
+		
+		
+		
+		
+		
+		
+		#G.change_scene("game"+str(number))

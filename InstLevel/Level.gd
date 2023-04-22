@@ -41,7 +41,6 @@ func _ready():
 	
 	preready()
 	level_timer.start(level_time)
-	#start_level(planes)
 	START()
 
 var planes: Array[Dictionary] 
@@ -62,13 +61,17 @@ func preready():
 #					plane["side"] = 1
 #				planes.push_back(plane)
 #	#print("\n\n\n",planes)
-	
-
-
 
 
 func add_path():
 	var pos_path = Vector2(0,50)
+	if level_path < 5:
+		pos_path.y += 30
+	if level_path < 4:
+		pos_path.y += 10
+	if level_path < 3:
+		pos_path.y += 40
+	
 	for path_n in range(1,level_path+1):
 		var new_path = PATH.instantiate()
 		pos_path.y += 100
@@ -79,22 +82,13 @@ func add_path():
 		paths.push_back(path)
 
 
+
 func _physics_process(_delta):
 	if get_tree().get_current_scene().name == "World":
-		TimeToWin.text = str(level_timer.time_left)
+		TimeToWin.text = str(int(level_timer.time_left))
 	if get_tree().get_current_scene().name == "LevelEditor":
 		TimeToWin.text = str(int(level_time-level_timer.time_left))+"/"+str(int(level_time))
 
-
-func start_level(_level:Array[Dictionary])->void:
-	#print(_level)
-	for plane in _level:
-		#print(abs(plane["time"]-(level_time-level_timer.time_left)))
-		
-		before_timer.start(abs(plane["time"]-(level_time-level_timer.time_left)))
-		#print(before_timer.time_left)
-		await before_timer.timeout
-		create_airplane(plane["path"],plane["side"],plane["type"])
 
 
 func START():
@@ -108,7 +102,7 @@ func START():
 
 func START_CREATED(Events,Path):
 	for second in Events:
-		print("начали ",second," path ",Path)
+		#print("начали ",second," path ",Path)
 		if int(second) == 0:
 			CREATED(Events[second])
 			#print("continue ",second," path ",Path)
@@ -214,3 +208,11 @@ func change_colis(body):
 func delete(body):
 	if not body.can_colide:
 		body.queue_free()
+
+
+func _on_timer_timeout():
+	if get_tree().get_current_scene().name == "World":
+		win()
+	if get_tree().get_current_scene().name == "LevelEditor":
+		get_tree().get_current_scene().remove_level()
+	

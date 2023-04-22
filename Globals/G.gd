@@ -4,6 +4,7 @@ extends Node
 @onready var menu = preload("res://Scenes/menu.tscn")
 @onready var level_selection = preload("res://Scenes/level_select.tscn")
 @onready var level_edit_menu = preload("res://Editor/MenuEditor/menu_editor.tscn")
+@onready var level_inst = preload("res://InstLevel/world.tscn")
 
 @onready var level_editor = preload("res://Editor/LevelEditor/level_editor.tscn")
 @onready var game1 = preload("res://Levels/world.tscn")
@@ -30,8 +31,8 @@ var EPE: Dictionary
 var selected_airplane: CharacterBody2D
 var selected_path 
 var selected_lvl: int #obsolete
-var there_levels: Array = [1,2,3]
-var there_levels_completed: Array = [1,2,3]
+var there_levels: Array = [1]
+var there_levels_completed: Array = []
 
 
 func change_scene(type):

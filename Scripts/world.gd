@@ -2,7 +2,7 @@ extends Node2D
 
 func _input(event):
 	if event.is_action_pressed("ESC"):
-		G.MenuSoundPlay()
+		Au.MenuSoundPlay()
 		G.change_scene("menu")
 
 @onready var б = preload("res://Scenes/Planes/base_airplane.tscn")
@@ -77,7 +77,7 @@ func losing():
 		pass
 	#Показать проигрыш
 	Losing.show()
-	G.LosePlay()
+	Au.LosePlay()
 
 
 func win():

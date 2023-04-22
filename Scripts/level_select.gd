@@ -7,7 +7,7 @@ func _input(event):
 
 @onready var L = preload("res://Scenes/Level.tscn")
 
-var levels = [1,2,3]
+var levels = [1,2]
 
 func _ready():
 	for i in levels:
@@ -16,6 +16,7 @@ func _ready():
 		
 		if G.there_levels.has(i):
 			l.open = true
+			print(G.there_levels)
 		
 		if G.there_levels_completed.has(i):
 			l.completed = true
